@@ -1,0 +1,23 @@
+name: Python Path Filter Workflow
+
+on:
+  push:
+    branches:
+      - python-app
+    paths:
+      - '**/*.py'  # Запуск только при изменении .py файлов во всем репозитории
+  pull_request:
+    branches:
+      - python-app
+    paths:
+      - '**/*.py'  # Запуск только при изменении .py файлов в PR
+
+jobs:
+  run-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print notification
+        run: echo "Workflow triggered successfully because a Python (.py) file was modified."
